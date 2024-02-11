@@ -42,12 +42,6 @@ corpus_trainer = ChatterBotCorpusTrainer(weather_bot)
 # Train the chatbot on the English language corpus data
 corpus_trainer.train("chatterbot.corpus.english")
 
-# Extract conversations from the "dialog" key
-conversations = [dialog["dialog"] for dialog in dataset]
-
-# Flatten the list of messages into a single list
-flattened_messages = [message["text"] for conversation in conversations for message in conversation]
-
 # Load or train the chatbot on additional data
 # (you can replace this with your own training data loading)
 load_existing_model = True  # Set to True if you have a pre-trained model saved on disk
@@ -60,10 +54,11 @@ if load_existing_model:
 else:
     # Train the bot from scratch or additional data
     trainer = ListTrainer(weather_bot)
-    trainer.train(flattened_messages)
-
-# Save the trained model to disk
-#trainer.export_for_training("./my_trained_model")
+    trainer.train([
+        "Your training data goes here",
+        "Another training data point",
+        # Add more training data as needed
+    ])
 
 # Set OpenWeatherMap API key
 api_key = "c0dc9ee92a3b15efbd2b65edb8d99a74"
