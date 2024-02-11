@@ -8,6 +8,9 @@ import json
 import streamlit as st
 import nltk
 
+# Initialize the chatbot without SQL storage adapter
+weather_bot = ChatBot("WeatherBot")
+
 nltk.download('wordnet')
 
 # Load spaCy English language model
@@ -32,8 +35,6 @@ def get_location_from_user_input(user_input):
     doc = nlp(user_input)
     locations = [ent.text for ent in doc.ents if ent.label_ == "GPE"]
     return locations[0] if locations else None
-
-weather_bot = ChatBot("WeatherBot", read_only=True, storage_adapter="chatterbot.storage.SQLStorageAdapter", database_uri="sqlite:///C:\\Users\\rodri\\PycharmProjects\\Weather Informative Chatbot Final\\RD Docker Weather Bot\\db.sqlite3")
 
 # Use the ChatterBotCorpusTrainer for better context training
 corpus_trainer = ChatterBotCorpusTrainer(weather_bot)
