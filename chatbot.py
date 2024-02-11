@@ -42,10 +42,6 @@ corpus_trainer = ChatterBotCorpusTrainer(weather_bot)
 # Train the chatbot on the English language corpus data
 corpus_trainer.train("chatterbot.corpus.english")
 
-# Load training data from JSON file
-with open('data_tolokers.json', 'r', encoding='utf-8') as file:
-    dataset = json.load(file)
-
 # Extract conversations from the "dialog" key
 conversations = [dialog["dialog"] for dialog in dataset]
 
